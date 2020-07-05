@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+#include <stack>
+using namespace std;
+
+int main()
+{
+	int n;
+	cin >> n;
+
+	for (size_t i = 0; i < n; i++)
+	{
+		string str;
+		cin >> str;
+		stack<int> st;
+
+		for (size_t i = 0; i < str.size(); i++)
+		{
+			if (str[i] == ')')
+			{
+				if (st.empty())
+				{
+					cout << "NO" << endl;
+					break;
+				}
+				else
+				{
+					st.pop();
+				}
+			}
+			else
+			{
+				st.push(1);
+			}
+
+			if (i==str.size()-1)
+			{
+				if (st.empty())
+				{
+					cout << "YES" << endl;
+				}
+				else
+				{
+					cout << "NO" << endl;
+				}
+			}
+		}
+
+
+	}
+
+}
