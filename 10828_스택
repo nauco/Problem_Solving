@@ -1,0 +1,117 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+int arr[10001];
+
+int main()
+{
+	int n;
+	cin >> n;
+	int top = 0;
+	for (size_t i = 0; i < n; i++)
+	{
+		string str;
+		int m;
+
+		cin >> str;
+		if (str == "push")
+		{
+			cin >> m;
+			arr[top] = m;
+			top += 1;
+		}
+		else if (str == "pop")
+		{
+			if (top == 0)
+			{
+				cout << "-1" << endl;
+			}
+			else
+			{
+				top -= 1;
+				cout << arr[top] << endl;
+			}
+		}
+		else if (str == "size")
+		{
+			cout << top << endl;
+		}
+		else if (str == "empty")
+		{
+			cout << (top==0?1:0) << endl;
+		}
+		else if (str == "top")
+		{
+			if (top == 0)
+			{
+				cout << "-1" << endl;
+			}
+			else
+			{
+				cout <<arr[top-1] << endl;
+			}
+		}
+		else
+		{
+			cout << "error";
+		}
+	}
+}
+
+void func()
+{
+	int n;
+	stack<int> st;
+
+	cin >> n;
+	for (size_t i = 0; i < n; i++)
+	{
+		string str;
+		int m;
+
+		cin >> str;
+		if (str == "push")
+		{
+			cin >> m;
+			st.push(m);
+		}
+		else if (str == "pop")
+		{
+			if (st.empty())
+			{
+				cout << "-1" << endl;
+			}
+			else
+			{
+				cout << st.top() << endl;
+				st.pop();
+			}
+		}
+		else if (str == "size")
+		{
+			cout << st.size() << endl;
+		}
+		else if (str == "empty")
+		{
+			cout << st.empty() << endl;
+		}
+		else if (str == "top")
+		{
+			if (st.empty())
+			{
+				cout << "-1" << endl;
+			}
+			else
+			{
+				cout << st.top() << endl;
+			}
+		}
+		else
+		{
+			cout << "error";
+		}
+
+	}
+}
