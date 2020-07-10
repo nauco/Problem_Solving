@@ -1,0 +1,38 @@
+def solution(genres, plays):
+    answer = []
+    g = {} #sorted genres by total plays
+    arr = {}
+    plays_id = [] #sorted by plays with id
+    
+    for i in range(len(genres)):
+        if(genres[i] in g):
+            g[genres[i]] += plays[i]
+        else:
+            g[genres[i]] = plays[i]
+    
+    g = sorted(g.items(), key=lambda item: item[1], reverse = True)
+    
+    for i in range(len(plays)):
+        plays_id.append([genres[i], plays[i], i])
+    
+    plays_id = sorted(plays_id, key=lambda item: item[1],reverse = True)
+
+    for i in g:  
+        it = iter(x for x in plays_id if x[0] == i[0])
+        answer.append(next(it, None)[2])
+        t = next(it, None)
+        if(t != None):
+            answer.append(t[2])
+  
+#     for i in range(len(plays_id)):
+#         if(plays_id[i][0] in arr):
+#             arr[plays_id[i][0]].append([plays_id[i][1], plays_id[i][2]])
+#         else:
+#             arr[plays_id[i][0]] = [[plays_id[i][1], plays_id[i][2]]]
+    
+#     for i in g:
+#         answer.append(arr[i[0]][0][1])
+#         if(len(arr[i[0]])>1):
+#             answer.append(arr[i[0]][1][1])
+        
+    return answer
