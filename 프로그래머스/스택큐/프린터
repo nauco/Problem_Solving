@@ -1,0 +1,16 @@
+def solution(priorities, location):
+    answer = 0
+    
+    while priorities:
+        if(priorities[0] == max(priorities)):
+            answer += 1
+            if(location == 0):
+                break
+        else:
+            priorities.append(priorities[0])
+            if(location == 0):
+                location = len(priorities) - 1
+        del priorities[0]
+        location -= 1
+                
+    return answer
