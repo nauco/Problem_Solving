@@ -1,0 +1,15 @@
+def solution(arrangement):
+    answer = 0
+    st = 0
+    arr = arrangement.replace('()', '*')
+    
+    for i in arr:
+        if(i == '('):
+            st += 1
+        elif(i == ')'):
+            answer += 1
+            st -= 1
+        else:
+            answer += st
+            
+    return answer
