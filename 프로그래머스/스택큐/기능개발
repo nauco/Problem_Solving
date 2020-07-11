@@ -1,0 +1,15 @@
+import math
+def solution(progresses, speeds):
+    answer = []
+    days = [math.ceil((100-i) / j) for i,j in zip(progresses, speeds)]
+    print(days)
+    
+    stack = []
+    for i in days:
+        if(stack and stack[0]<i):
+            answer.append(len(stack))   
+            stack.clear()
+        stack.append(i)
+    answer.append(len(stack))  
+
+    return answer
