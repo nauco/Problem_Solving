@@ -1,0 +1,14 @@
+def solution(prices):
+    answer = [0] * len(prices)
+    stack = []
+    for i in range(len(prices)):
+        while stack and stack[-1][0]>prices[i]:            
+            p, time = stack.pop()
+            answer[time] = i-time
+        stack.append((prices[i], i))
+    
+    while stack:
+        p, time = stack.pop()
+        answer[time] = len(prices) - time - 1
+    
+    return answer
