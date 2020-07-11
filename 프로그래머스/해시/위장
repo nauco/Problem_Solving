@@ -1,0 +1,12 @@
+def solution(clothes):
+    answer = 0
+    hash_table = {}
+    for i in clothes:
+        hash_table.setdefault(i[1], ['empty'])
+        hash_table[i[1]].append(i[0])
+    
+    result = 1
+    for i in hash_table:
+        result *= len(hash_table[i])
+    
+    return result-1
