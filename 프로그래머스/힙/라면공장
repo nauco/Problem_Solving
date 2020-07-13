@@ -1,0 +1,14 @@
+import heapq as hq
+def solution(stock, dates, supplies, k):
+    answer = 0
+    ds = list(zip(dates, supplies))
+    pq = []
+    while(stock<k):
+        if(ds and ds[0][0] <= stock):
+            hq.heappush(pq, -ds[0][1])
+            del ds[0]
+        else:
+            stock -= hq.heappop(pq)
+            answer += 1
+             
+    return answer
