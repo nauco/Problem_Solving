@@ -1,29 +1,22 @@
 import heapq as hq
 def solution(jobs):
     answer = 0
-    running = []
+    running = [0, 0]
     waiting = []
     cnt = len(jobs)
     jobs.sort()
     while jobs or waiting:
         #print(jobs, "\nrun" , running, "\nwait", waiting)
-        if not running and not waiting:
-            running.append([jobs[0][0], jobs[0][0]+jobs[0][1]])
+        if not waiting and running[1] < jobs[0][0]:
+            running = [jobs[0][0], jobs[0][0]+jobs[0][1]]
             answer += jobs[0][1]
-            del jobs[0]
-        elif not running and waiting:
-            running.append([waiting[0][1], waiting[0][0] + waiting[0][1]])
-            hq.heappop(waiting)            
-        elif jobs and running[0][1] >= jobs[0][0]:
+            del jobs[0]     
+        elif jobs and running[1] >= jobs[0][0]:
             hq.heappush(waiting, [jobs[0][1], jobs[0][0]])
-            del jobs[0]
-        elif not waiting and jobs and running[0][1] < jobs[0][0]:
-            running[0] = [jobs[0][0], jobs[0][0]+jobs[0][1]]
-            answer += jobs[0][1]
-            del jobs[0]            
+            del jobs[0]       
         else:
-            answer += waiting[0][0] - waiting[0][1] + running[0][1]
-            running[0] = [running[0][1], waiting[0][0]+running[0][1]]
+            answer += waiting[0][0] - waiting[0][1] + running[1]
+            running = [running[1], waiting[0][0] + running[1]]
             hq.heappop(waiting)
             
     return (int)(answer / cnt)
