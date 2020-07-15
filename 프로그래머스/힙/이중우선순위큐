@@ -1,0 +1,20 @@
+import heapq
+def solution(operations):
+    answer = [0, 0]
+    maxq = []
+    minq = []
+    
+    for i in operations:
+        data = i.split()[1]
+        if(i.startswith('I')):
+            heapq.heappush(minq, int(data))
+            heapq.heappush(maxq, -1 * int(data))
+        elif(maxq):
+            if(data == "1"):
+                minq.remove(-heapq.heappop(maxq))
+            elif(data == "-1"):
+                maxq.remove(-heapq.heappop(minq))
+    
+    if(maxq):
+        answer = [-maxq[0], minq[0]]
+    return answer
