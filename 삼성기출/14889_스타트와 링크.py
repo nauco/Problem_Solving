@@ -13,7 +13,7 @@ def stat(team):
 
 def func(n, a, b):
     global result
-    if n == N and len(a) == N/2 and len(a) == len(b):
+    if n == N:
         result = min(abs(stat(a)-stat(b)), result)
     else:
         if len(a) < N/2:
